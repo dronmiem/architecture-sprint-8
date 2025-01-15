@@ -17,12 +17,24 @@ const ReportPage: React.FC = () => {
       setError(null);
 
       const response = await fetch(`http://localhost:8000/reports`, {
+        method: 'GET',
         headers: {
-          'Authorization': `Bearer ${keycloak.token}`
-        }
+          'Authorization': `Bearer ${keycloak.token}`,
+        },
       });
 
-      
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Report.xlsx';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {

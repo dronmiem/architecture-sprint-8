@@ -1,0 +1,2 @@
+2025-01-15 13:19:27,597 [MainProcess: 20024] [MainThread: 20416] [INFO] __main__: API is starting up
+2025-01-15 13:19:27,597 [MainProcess: 20024] [MainThread: 20416] [INFO] __main__: Custom logger integrated with Uvicorn error and access loggers.
